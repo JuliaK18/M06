@@ -1,0 +1,96 @@
+<html>
+<title>Demos DAW 2</title>
+<head> </head>
+<script>
+
+//funcio, dos parametres i aparageui al costat de daw 2
+//A la consola posariem MostrarUsuari("s","q")
+function MostrarUsuari(user, pass){
+    document.getElementById("title").innerHTML = "login";
+    document.getElementById("title").innerText = "login";
+
+}
+
+//Fer una funció que pugui ocultar el títol
+
+function ocultarMsg(){
+    document.getElementById("msg").style.visibility = 'hidden';
+
+}
+//ocultarMsg()
+
+//Comentaris, tipus de variables, mateixa variable es pot posar diferents tipos
+var x = "hola";
+console.log(x);
+x = "adéu";
+console.log(x);
+
+//Let i var, què fa?
+
+let m= "Júlia";
+console.log(m);
+
+//fer validació
+
+
+
+alert("Hola" );
+
+function validation(){
+
+    let user = document.getElementById("login").value;
+    let pass = document.getElementById("Contrasenya").value;
+    if(user.length  === 0){
+        alert("Falta posar l'usuari!" + "  " );
+        document.getElementById("login").style.borderColor = "red";
+        document.getElementById("msg").innerHTML = "Introdueix l'usuari";
+        document.getElementById("msg").style.color = "red";
+
+
+    } else if(pass.length  === 0){
+        alert("Falta posar la contrasenya!" + "  " );
+        document.getElementById("Contrasenya").style.borderColor = "red";
+        document.getElementById("msg").innerHTML = "Introdueix la  contrassenya";
+        document.getElementById("msg").style.color = "red";
+
+    } else if(user.length  === 0 && pass.length  === 0) {
+        document.getElementById("login").style.borderColor = "red";
+        document.getElementById("Contrasenya").style.borderColor = "red";
+        document.getElementById("msg").innerHTML = "Introdueix l'usuari i la constrassenya!";
+        document.getElementById("msg").style.color = "red";
+    } else {
+        document.getElementById("msg").style.color = "green";
+        document.getElementById("msg").innerHTML = "Inici Sessió!";
+        document.getElementById("login").style.borderColor = "grey";
+        document.getElementById("Contrasenya").style.borderColor = "grey";
+
+
+        
+    }
+
+}
+
+</script>
+
+<style lang = "css">
+    body{
+        margin: 3%;
+    }
+
+    </style>
+
+<body>
+    <h1 id="msg"> Inici Sessió! </h1>
+    <h3 id="missatge"> </h3>
+
+    <DIV>
+        <h2 id="title">Alumnat DAW 2 </h2><br/>
+        <input type = "text"  name="login" id ="login" placeholder="escriu algo" />
+        <input type = "Contrasenya" name="Contrasenya" id ="Contrasenya" placeholder="Contrasenya" />
+        <input type = "button" text = "Enviar" onclick="validation()" value = "enviar">
+    </DIV>
+
+    
+</body>
+</html>   
+
