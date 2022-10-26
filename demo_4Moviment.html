@@ -1,7 +1,8 @@
 <html>
 <title>Demos DAW 2</title>
-<head>
-    <link rel="stylesheet" href="../../css/navbar.css">
+<head> 
+    <script src="javascript.js"></script>
+    <link rel="stylesheet" href="../M06/style.css">
 
 </head>
 <script>
@@ -43,23 +44,32 @@ function validation(){
 
     let user = document.getElementById("login").value;
     let pass = document.getElementById("Contrasenya").value;
+    let mail = document.getElementById("email").value;
+
     if(user.length  === 0){
         alert("Falta posar l'usuari!" + "  " );
         document.getElementById("login").style.borderColor = "red";
         document.getElementById("msg").innerHTML = "Introdueix l'usuari";
         document.getElementById("msg").style.color = "red";
+    }
+    else if(mail.length  === 0){
+        alert("Falta posar el correu!" + "  " );
+        document.getElementById("email").style.borderColor = "red";
+        document.getElementById("msg").innerHTML = "Introdueix el correu";
+        document.getElementById("msg").style.color = "red";
+    }
 
-
-    } else if(pass.length  === 0){
+    else if(pass.length  === 0){
         alert("Falta posar la contrasenya!" + "  " );
         document.getElementById("Contrasenya").style.borderColor = "red";
         document.getElementById("msg").innerHTML = "Introdueix la  contrasenya";
         document.getElementById("msg").style.color = "red";
-
-    } else if(user.length  === 0 & pass.length  === 0) {
-        document.getElementById("msg").innerHTML = "Introdueix l'usuari i la constrassenya!";
+    }
+    else if(user.length  === 0 & pass.length  === 0 & mail.length  === 0) {
+        document.getElementById("msg").innerHTML = "Introdueix les dades pertinents!";
         document.getElementById("msg").style.color = "red";
-    } else {
+    }
+    else {
         document.getElementById("msg").style.color = "green";
         document.getElementById("msg").innerHTML = "Inici Sessió!";
         document.getElementById("login").style.borderColor = "grey";
@@ -68,54 +78,42 @@ function validation(){
 
         
     }
-
-    // preparem la constant
-const botonet2 = document.querySelectorAll('.btn-crazy');
-
-//dwfinim la funció
-function Moviment() {
-// obteniu un nombre aleatori per al desplaçament esquerre 
-// nombre aleatori per al desplaçament superior
-  const desplaçamentEsquerra = Math.random() * (window.innerWidth - this.clientWidth);
-  const desplaçamentDalt  = Math.random() * (window.innerHeight - this.clientHeight);
-
-  console.log(desplaçamentEsquerra, desplaçamentDalt);
-
-  // apply those numbers to the button
-  this.style.top = desplaçamentDalt + 'px';
-  this.style.left = desplaçamentEsquerra + 'px';
 }
+    
 
-// posem event listeners
-botonet2.forEach(button => button.addEventListener('mouseenter', function())){
-  Moviment();  
-}
+//Prepararem una funció per preparar el nostre botó amb cooldown
+var botonet = new cooldown1();
 
-
-}
+function cooldown1() {
 
 
-</script>
-
-<style lang = "css">
-    body{
-        margin: 3%;
+cooldown1.prototype.coolDown = function() {
+    document.getElementById("cd").disabled = false;
+    setTimeout(function() {document.getElementById("cd").disabled = "false";}, 2000);
     }
 
-    </style>
+window.onload = function() {
+    document.getElementById("cd").onclick = botonet.coolDown;
+    }
 
+}
+
+</script>
 <body>
     <h1 id="msg"> Inici Sessió! </h1>
     <h3 id="missatge"> </h3>
-
+<form action="https://agora.xtec.cat/insmontsia/" method="post">
     <DIV>
         <h2 id="title">Alumnat DAW 2 </h2><br/>
         <input type = "text"  name="login" id ="login" placeholder="escriu algo" />
+        <input type="email" id="email"pattern=".+@gmail\.com" size="30"placeholder="Correu electrònic" required>
         <input type = "Contrasenya" name="Contrasenya" id ="Contrasenya" placeholder="Contrasenya" />
-        <input type = "button" text = "Enviar" onclick="validation()" value = "enviar">
+        <button type="button" class="btn-crazy btn btn-lg btn-danger" onclick="validation()" onclick= "cooldown1()" value = "enviar">
+            Enviar!
+          </button>
     </DIV>
-
+</form>
     
 </body>
-</html>   
 
+</html>   
